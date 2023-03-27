@@ -8,49 +8,9 @@ import CreationCompte from '../Pages/CreationCompte';
 import Logout from '../Pages/Logout';
 import '../assets/css/NavBar.css';
 import { Component } from 'react';
-/*
-function NavBar() {
-  return (
-    <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/encyclopédie">Encyclopédie</Link>
-          </li>
-          <li>
-            <Link to="/missions">Missions</Link>
-          </li>
-          <li>
-            <Link to="/contrôleAnimaux">Contrôle des Animaux</Link>
-          </li>
-          <li>
-            <Link to="/avertissement">Avertissement</Link>
-          </li>
-          <li>
-            <Link to="/creationCompte">Création des comptes</Link>
-          </li>
-          <li>
-            <Link to="/logout">Déconnexion</Link>
-        </li>
-        </ul>
-      </nav>
 
-      <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/encyclopédie" element={<Encyclopédie />} />
-      <Route path="/missions" element={<Missions />} />
-      <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
-      <Route path="/avertissement" element={<Avertissement />} />
-      <Route path="/creationCompte" element={<CreationCompte />} />
-      <Route path="/logout" element={<Logout />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
 
-export default NavBar;*/
-
-class Navbar extends Component{
+class NavBar extends Component{
   state = { clicked: false };
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
@@ -103,4 +63,4 @@ class Navbar extends Component{
   }
 }
 
-export default Navbar;
+export default NavBar;
