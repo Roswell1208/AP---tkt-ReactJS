@@ -1,11 +1,11 @@
 import React from 'react';
 
-const CreationCompte = () => {
+const Logout = () => {
     return (
         <div>
-            test
+            
         </div>
     );
 };
 
-export default CreationCompte;
+export default Logout;
