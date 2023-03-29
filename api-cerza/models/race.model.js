@@ -11,10 +11,11 @@ const Race = function(race) {
     this.tailleMoy = race.tailleMoy;
     this.poidsMoy = race.poidsMoy;
     this.esperenceDeVie = race.esperenceDeVie;
+    this.imgRace = race.imgRace;
 }
 
 Race.findById = (raceId, result) => {
-    sql.query(`SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie FROM race
+    sql.query(`SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race
     WHERE idRace = ${raceId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -34,7 +35,7 @@ Race.findById = (raceId, result) => {
 };
 
 Race.getAll = result => {
-    sql.query('SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie FROM race'
+    sql.query('SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race'
     , (err, res) => {
         if (err) {
             console.log("error: ", err);
