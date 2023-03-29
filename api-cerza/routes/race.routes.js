@@ -9,5 +9,5 @@ module.exports = app => {
     // Retrieve a single Race with id
     router.get("/:id", race.findOne);
 
-    app.use('/api/race', router);
+    app.use('/api/races', router);
 };

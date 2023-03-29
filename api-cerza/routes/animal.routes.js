@@ -9,5 +9,5 @@ module.exports = app => {
     // Retrieve a single Animal with id
     router.get("/:id", animal.findOne);
 
-    app.use('/api/animal', router);
+    app.use('/api/animals', router);
 };

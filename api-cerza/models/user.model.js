@@ -24,7 +24,7 @@ User.create = (newUser, result) => {
 };
 
 User.findById = (userId, result) => {
-    sql.query(`SELECT * FROM user WHERE username = ${userId}`, (err, res) => {
+    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole FROM user WHERE username = ${userId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -43,7 +43,7 @@ User.findById = (userId, result) => {
 };
 
 User.getAll = result => {
-    sql.query("SELECT * FROM user", (err, res) => {
+    sql.query("SELECT username, email, password, lastname, firstname, roles_idRole FROM user", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
