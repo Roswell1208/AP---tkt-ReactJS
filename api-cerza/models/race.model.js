@@ -3,6 +3,7 @@ const sql = require("./db.js");
 // constructor
 const Race = function(race) {
     this.idRace = race.idRace;
+    this.libelleRace = race.libelleRace;
     this.descriptionRace = race.descriptionRace;
     this.origine = race.origine;
     this.regime = race.regime;
@@ -15,7 +16,7 @@ const Race = function(race) {
 }
 
 Race.findById = (raceId, result) => {
-    sql.query(`SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race
+    sql.query(`SELECT idRace, libelleRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race
     WHERE idRace = ${raceId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,7 +36,7 @@ Race.findById = (raceId, result) => {
 };
 
 Race.getAll = result => {
-    sql.query('SELECT idRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race'
+    sql.query('SELECT idRace, libelleRace, descriptionRace, origine, regime, milieuDeVie, gestation, tailleMoy, poidsMoy, esperenceDeVie, imgRace FROM race'
     , (err, res) => {
         if (err) {
             console.log("error: ", err);
