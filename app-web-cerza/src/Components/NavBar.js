@@ -19,7 +19,7 @@ class NavBar extends Component{
   return (
     <BrowserRouter>
       <nav>
-      <a href="/encyclopédie" class="logo"> <img id="logo" src="assets/img/Cerza.PNG" alt='logo'/></a>
+      <a href="/encyclopédie" className="logo"> <img id="logo" src="assets/img/Cerza.PNG" alt='logo'/></a>
       <div>
         <ul id="navbar" className={this.state.clicked ? "#navbar active" : "#navbar"}>
           <li>
