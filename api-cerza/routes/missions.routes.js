@@ -18,11 +18,5 @@ module.exports = app => {
     // Update a Mission commentary with id
     router.put("/updateComments/:id/:comment", missions.updateCommentary);
 
-    // Delete a User with id
-    /*router.delete("/:id", users.delete);
-
-    // Delete all Users
-    router.delete("/", users.deleteAll);*/
-
     app.use('/api/missions', router);
 };
