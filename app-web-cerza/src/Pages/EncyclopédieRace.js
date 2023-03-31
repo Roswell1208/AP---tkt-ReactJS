@@ -14,6 +14,9 @@ const EncyclopédieRace = () => {
   const [data, setData] = useState([]);
     
   useEffect(() => {
+
+    document.title = 'Encyclopédie';
+
     const fetchData = async () => {
       const result = await axios(
         'http://localhost:8080/api/races',
