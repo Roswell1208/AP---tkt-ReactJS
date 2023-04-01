@@ -27,9 +27,12 @@ Mission.create = (newMission, result) => {
 };
 
 Mission.findByUsername = (userId, result) => {
-    sql.query(`SELECT idMission, descriptionMission, dateEcheanceMission, 
-    commentaireMission, estEffectuee, user_username, prioriteMission_idPriorite, 
-    animal_codeAnimal, enclos_codeEnclos FROM missions WHERE user_username = ${userId}`, (err, res) => {
+    sql.query(`SELECT idMission, descriptionMission, dateEcheanceMission, commentaireMission, estEffectuee, 
+    user_username, prioriteMission_idPriorite, libellePriorite, animal_codeAnimal, nomAnimal, missions.enclos_codeEnclos
+    FROM missions
+    LEFT JOIN animal ON missions.animal_codeAnimal = animal.codeAnimal
+    INNER JOIN prioritemission ON missions.prioriteMission_idPriorite = prioritemission.idPriorite
+    WHERE user_username = ${userId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
