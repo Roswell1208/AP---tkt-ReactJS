@@ -121,7 +121,7 @@ const Missions = () => {
                             variant="filled"
                             onChange={(e) => {comment = e.target.value}}
                             />
-                        <Button onClick={() => updateComments(item.idMission, comment, item.commentaireMission)} variant="contained" size="small"><i class="fa-solid fa-check fa-beat"></i></Button>
+                        <Button onClick={() => updateComments(item.idMission, comment, item.commentaireMission)} variant="contained" size="small"><i className="fa-solid fa-check fa-beat"></i></Button>
                         </TableCell>
                         </TableRow>
                     ))}
