@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import EncyclopédieR from '../Components/EncyclopédieR';
+import RaceList from '../Components/RaceList';
 
 const EncyclopédieRace = () => {
     useEffect(() => {
@@ -8,7 +8,7 @@ const EncyclopédieRace = () => {
     
     return (
         <div>
-            <EncyclopédieR />
+            <RaceList/>
         </div>
     );
 };
