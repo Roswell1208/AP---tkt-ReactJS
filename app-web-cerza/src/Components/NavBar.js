@@ -2,6 +2,7 @@ import Encyclopédie from '../Pages/Encyclopédie';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from '../Pages/Login';
 import Missions from '../Pages/Missions';
+import MissionsAdmin from '../Pages/MissionsAdmin';
 import ContrôleAnimaux from '../Pages/ContrôleAnimaux';
 import Avertissement from '../Pages/Avertissement';
 import CreationCompte from '../Pages/CreationCompte';
@@ -53,6 +54,7 @@ class NavBar extends Component{
       <Route path="/" element={<Login />} />
       <Route path="/encyclopédie" element={<Encyclopédie />} />
       <Route path="/missions" element={<Missions />} />
+      <Route path="/missionsAdmin" element={<MissionsAdmin />} />
       <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
       <Route path="/avertissement" element={<Avertissement />} />
       <Route path="/creationCompte" element={<CreationCompte />} />

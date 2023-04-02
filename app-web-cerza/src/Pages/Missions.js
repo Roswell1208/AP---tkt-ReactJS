@@ -109,7 +109,7 @@ const Missions = () => {
                         </TableCell>
                         <TableCell align="center">{item.prioriteMission_idPriorite} - {item.libellePriorite}</TableCell>
                         <TableCell align="center">{item.animal_codeAnimal == null ? '/' : item.animal_codeAnimal + ' - ' + item.nomAnimal}</TableCell>
-                        <TableCell align="center">{item.enclos_codeEnclos}</TableCell>
+                        <TableCell align="center">{item.enclos_codeEnclos == null ? '/' : item.enclos_codeEnclos}</TableCell>
                         {/*<TableCell align="center">{item.commentaireMission == null ? '/' : item.commentaireMission}</TableCell>*/}
                         <TableCell align="center">
                         <TextField
