@@ -21,5 +21,8 @@ module.exports = app => {
     // Delete all Users
     router.delete("/", users.deleteAll);
 
+    //compare user with database
+    router.post("/login", users.auth);
+
     app.use('/api/users', router);
 };
