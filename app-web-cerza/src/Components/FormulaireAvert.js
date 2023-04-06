@@ -6,12 +6,12 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 
 const FormulaireAvert = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [niveauAlerte, setNiveauAlerte] = useState([]);
-  const [descriptionAvertissement, setDescriptionAvertissement] = useState("");
-  const [niveauAlerte_idNiveauAlerte, setIdNiveauAlerte] = useState("");
-  const [griser, setGriser] = useState(false);
-  const reloadPage = () => {window.location.reload();}
+  const [isSubmitted, setIsSubmitted] = useState(false); // Vérifie s'il y a une insertio 
+  const [niveauAlerte, setNiveauAlerte] = useState([]); // Pour le libelle de nos alerte
+  const [descriptionAvertissement, setDescriptionAvertissement] = useState(""); // Pour la description de notre alerte
+  const [niveauAlerte_idNiveauAlerte, setIdNiveauAlerte] = useState(""); // Pour récupérer l'id de notre alerte
+  const [griser, setGriser] = useState(false); // Pour vérifier si le bouton est grisé
+  const reloadPage = () => {window.location.reload();} // Pour refresh la page
 
 
   useEffect(() => {

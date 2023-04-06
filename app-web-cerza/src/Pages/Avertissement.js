@@ -1,6 +1,5 @@
 import React,  {useEffect} from 'react';
 import FormulaireAvert from '../Components/FormulaireAvert';
-// import AlertMessage from '../Components/AlertMessage';
 
 const Avertissement = () => {
     useEffect(() => {
@@ -9,7 +8,6 @@ const Avertissement = () => {
 
     return (
         <div>
-            {/* <AlertMessage /> */}
             <FormulaireAvert />
         </div>
     );
