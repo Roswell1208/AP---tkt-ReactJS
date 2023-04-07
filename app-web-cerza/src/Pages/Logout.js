@@ -1,6 +1,10 @@
-import React from 'react';
+import React,  {useEffect} from 'react';
 
 const Logout = () => {
+    useEffect(() => {
+        document.title = 'Logout';
+    }, []);
+
     return (
         <div>
             

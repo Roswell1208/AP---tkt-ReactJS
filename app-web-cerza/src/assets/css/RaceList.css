@@ -1,0 +1,125 @@
+.container{
+  position: relative; /* permet de positionner les éléments enfants par rapport à lui-même */
+  display: flex; /* permet de positionner les éléments enfants horizontalement */
+  justify-content: center; /* permet de centrer les éléments enfants horizontalement */
+  align-items: center; /* permet de centrer les éléments enfants verticalement */
+  flex-wrap: wrap; /* permet de mettre les éléments enfants les uns en dessous des autres */
+  gap:100px 50px; /* permet de créer un espace entre les éléments enfants */
+  padding: 100px 50px; /* permet de créer un espace entre les éléments enfants et le bord de la page */
+}
+
+.container .card{
+  position:relative; /* permet de positionner les éléments enfants par rapport à lui-même */
+  display: flex;  /* permet de positionner les éléments enfants horizontalement */
+  justify-content: center; /* permet de centrer les éléments enfants horizontalement */
+  align-items: center; /* permet de centrer les éléments enfants verticalement */
+  width: 350px; /* permet de définir la largeur de l'élément */
+  height: 300px; /* permet de définir la hauteur de l'élément */
+  background: #fff; /* permet de définir la couleur de fond de l'élément */
+  border-radius: 20px; /* permet de définir les angles arrondis de l'élément */
+  box-shadow: 0 35px 80px rgba(0,0,0,0.15); /* permet de définir l'ombre de l'élément */
+  transition: 0.5s; /* permet de définir la durée de l'animation */
+}
+
+.container .card:hover{
+  height: 400px; /* permet de définir la hauteur de l'élément */
+}
+
+.container .card .imgBx{
+  position: absolute; /* permet de positionner les éléments enfants par rapport à lui-même */
+  top: 20px; /* permet de définir la position de l'élément par rapport à son parent */
+  width: 300px; /* permet de définir la largeur de l'élément */
+  height: 220px; /* permet de définir la hauteur de l'élément */
+  background: #333; /* permet de définir la couleur de fond de l'élément */
+  transition: 0.5s; /* permet de définir la durée de l'animation */
+  border-radius: 12px; /* permet de définir les angles arrondis de l'élément */
+  overflow: hidden; /* permet de cacher les éléments qui dépassent de l'élément */
+}
+
+.container .card:hover .imgBx{ 
+  top: -100px; /* permet de définir la position de l'élément par rapport à son parent */
+  scale:0.75; /* permet de définir la taille de l'élément */
+  box-shadow: 0 15px 45px rgba(0,0,0,0.2); /* permet de définir l'ombre de l'élément */
+}
+
+.container .card .imgBx img{
+  position: absolute; /* permet de positionner les éléments enfants par rapport à lui-même */
+  top: 0; /* permet de définir la position de l'élément par rapport à son parent */
+  left: 0; /* permet de définir la position de l'élément par rapport à son parent */
+  width: 100%; /* permet de définir la largeur de l'élément */
+  height: 100%;
+  object-fit: cover;
+}
+
+.container .card .content{
+  position: absolute;
+  top: 252px;
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  transition: 0.5s;
+  overflow: hidden;
+  height: 35px;
+}
+
+.container .card:hover .content{
+  top: 130px;
+  height: 250px;
+}
+
+.container .card .content h2{
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #333;
+}
+
+.container .card .content p{
+  color: #333;
+}
+
+.container .card .content a{
+  position: relative;
+  top:15px;
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ef7979;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.search-bar form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="text"] {
+  height: 40px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  outline: none;
+  width: 300px;
+}
+
+.search-bar input[type="text"]::placeholder {
+  color: #B9493E;
+}
+
+.search-bar input[type="text"]:focus {
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  transition: width 0.2s ease-in-out;
+}

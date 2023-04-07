@@ -1,4 +1,6 @@
-import Encyclopédie from '../Pages/Encyclopédie';
+import Accueil from '../Pages/Accueil';
+import EncyclopédieRace from '../Pages/EncyclopédieRace';
+import EncyclopédieAnimal from '../Pages/EncyclopédieAnimal';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from '../Pages/Login';
 import Missions from '../Pages/Missions';
@@ -20,11 +22,14 @@ class NavBar extends Component{
   return (
     <BrowserRouter>
       <nav>
-      <a href="/encyclopédie" className="logo"> <img id="logo" src="assets/img/Cerza.PNG" alt='logo'/></a>
+      <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza-logo.png" alt='logo'/></a>
       <div>
         <ul id="navbar" className={this.state.clicked ? "#navbar active" : "#navbar"}>
           <li>
-            <a className='active' href="/encyclopédie">Encyclopédie</a>
+            <a className={this.state.clicked ? "active": null} href="/">Accueil</a>
+          </li>
+          <li>
+            <a href="/encyclopédieRace">Encyclopédie</a>
           </li>
           <li>
             <a href="/missions">Missions</a>
@@ -51,8 +56,10 @@ class NavBar extends Component{
       </nav>
 
       <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/encyclopédie" element={<Encyclopédie />} />
+      <Route path="/" element={<Accueil />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/encyclopédieRace" element={<EncyclopédieRace />} />
+      <Route path="/encyclopédieAnimal" element={<EncyclopédieAnimal />} />
       <Route path="/missions" element={<Missions />} />
       <Route path="/missionsAdmin" element={<MissionsAdmin />} />
       <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
