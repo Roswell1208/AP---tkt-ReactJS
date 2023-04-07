@@ -55,6 +55,19 @@ User.getAll = result => {
     });
 };
 
+User.getList = result => {
+    sql.query("SELECT username, lastname, firstname FROM user", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        
+        console.log("users: ", res);
+        result(null, res);
+    });
+};
+
 User.updateById = (id, user, result) => {
     sql.query("UPDATE user SET username = ?, email = ?, password = ?, lastname = ?, firstname = ?, roles_idRole = ? WHERE username = ?", [user.username, user.email, user.password, user.lastname, user.firstname, user.roles_idRole, id], (err, res) => {
         if (err) {

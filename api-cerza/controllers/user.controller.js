@@ -42,6 +42,18 @@ exports.findAll = (req, res) => {
     });
 };
 
+// Retrieve all Users from the database.
+exports.listUsers = (req, res) => {
+    User.getList((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
 // Find a single User with an id
 exports.findOne = (req, res) => {
     User.findById(req.params.id, (err, data) => {

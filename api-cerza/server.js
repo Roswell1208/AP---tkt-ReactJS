@@ -23,6 +23,12 @@ app.get("/", (req, res) => {
 });
 
 require("./routes/user.routes.js")(app);
+require("./routes/missions.routes.js")(app);
+require("./routes/enclos.routes.js")(app);
+require("./routes/animal.routes.js")(app);
+require("./routes/race.routes.js")(app);
+require("./routes/avertissement.routes.js")(app);
+require("./routes/niveauAlerte.routes.js")(app);
 
 // set port, listen for requests
 const PORT = 8080;
