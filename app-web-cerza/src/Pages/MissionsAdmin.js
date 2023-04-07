@@ -13,6 +13,17 @@ import { Button, FilledInput } from '@mui/material';
 
 import TextField from '@mui/material/TextField';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
+
 const Missions = () => {
 
     const [data, setData] = useState([])
@@ -29,7 +40,67 @@ const Missions = () => {
         fetchData();
     }, []);
 
-    console.log(data);
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get(
+                'http://localhost:8080/api/users/list',
+            );
+
+            setUsers(result.data);
+        };
+
+        fetchData();
+    }, []);
+
+    const [animaux, setAnimaux] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get(
+                'http://localhost:8080/api/enclos/animaux',
+            );
+            
+            setAnimaux(result.data);
+        };
+
+        fetchData();
+    }, []);
+
+
+    const [enclos, setEnclos] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get(
+                'http://localhost:8080/api/enclos',
+            );
+            
+            setEnclos(result.data);
+        };
+
+        fetchData();
+    }, []);
+
+
+
+    const [description, setDescription] = useState('');
+    // const [dateEcheance, setDateEcheance] = useState<Date | null>(null);
+    // const [selected, setSelected] = useState<Date>(null);
+    const [userSelected, setUserSelected] = useState('Aucun');
+    const [priorité, setPriorité] = useState('Aucun');
+    const [codeAnimal, setCodeAnimal] = useState('Aucun');
+    const [codeEnclos, setCodeEnclos] = useState('Aucun');
+
+    const handleClick = (description, userSelected, priorité, codeAnimal, codeEnclos) => {
+        if (description != '' && userSelected != 'Aucun' && priorité != 'Aucun'){
+            alert('Description de la mission : ' + description + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
+        }
+        else {
+            alert('Veuillez remplir tous les champs !');
+        }
+    }
 
     return (
         <div>
@@ -79,11 +150,61 @@ const Missions = () => {
                 <h1>Ajouter une mission :</h1>
 
                 <p>Text field avec description de la mission</p>
+                <TextField
+                    id="filled-multiline-flexible"
+                    label="Description de la mission"
+                    multiline
+                    maxRows={4}
+                    variant="filled"
+                    onChange={(e) => {setDescription(e.target.value)}}
+                    />
+                    
+                <br></br>
                 <p>Calendrier avec date échéance de la mission</p>
+                
+                <br></br>
                 <p>Selector avec liste des user</p>
+                <select onChange={(e) => (setUserSelected(e.target.value))}>
+                    <option key={0} value={'Aucun'}>Aucun</option>
+                    {users.map((item) => (
+                        <option key={item.username} value={item.username}>{item.username} - {item.firstname} {item.lastname}</option>
+                    ))}
+                </select>
+
+                <br></br>
                 <p>Radio button avec les priorités</p>
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">Niveau de priorité</FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        name="radio-buttons-group"
+                        onChange={(e) => {setPriorité(e.target.value)}}
+                    >
+                        <FormControlLabel value={1} control={<Radio />} label="1 - Faible" />
+                        <FormControlLabel value={2} control={<Radio />} label="2 - Moyen" />
+                        <FormControlLabel value={3} control={<Radio />} label="3 - Fort" />
+                    </RadioGroup>
+                </FormControl>
+                
+                <br></br>
                 <p>Selector avec liste des codes animaux</p>
+                <select onChange={(e) => (setCodeAnimal(e.target.value))}>
+                    <option key={0} value={'Aucun'}>Aucun</option>
+                    {animaux.map((item) => (
+                        <option key={item.codeAnimal} value={item.codeAnimal}>{item.codeAnimal} - {item.nomAnimal}</option>
+                    ))}
+                </select>
+
+                <br></br>
                 <p>Selector avec liste des codes d'enclos</p>
+                <select onChange={(e) => (setCodeEnclos(e.target.value))}>
+                    <option key={0} value={'Aucun'}>Aucun</option>
+                    {enclos.map((item) => (
+                        <option key={item.codeEnclos} value={item.codeEnclos}>{item.codeEnclos}</option>
+                    ))}
+                </select>
+
+                <button onClick={() => handleClick(description, userSelected, priorité, codeAnimal, codeEnclos)}>Submit</button>
             </div>
 
         </div>

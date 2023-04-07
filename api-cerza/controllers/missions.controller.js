@@ -45,6 +45,28 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findListAnimaux = (req, res) => {
+    Mission.getListAnimaux((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving animals."
+            });
+        else res.send(data);
+    });
+};
+
+exports.findListEnclos = (req, res) => {
+    Mission.getListEnclos((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving enclos."
+            });
+        else res.send(data);
+    });
+};
+
 // Find a single Mission with an id
 exports.findOne = (req, res) => {
     Mission.findByUsername(req.params.id, (err, data) => {
