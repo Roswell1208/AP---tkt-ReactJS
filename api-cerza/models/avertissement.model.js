@@ -40,7 +40,7 @@ Avertissement.findById = (AvertissementId, result) => {
 };
 
 Avertissement.getAll = result => {
-    sql.query("SELECT idAvertissement, descriptionAvertissement, niveauAlerte_idNiveauAlerte FROM avertissement HAVING COUNT(*) < 5 ORDER BY niveauAlerte_idNiveauAlerte DESC", (err, res) => {
+    sql.query("SELECT idAvertissement, descriptionAvertissement, niveauAlerte_idNiveauAlerte FROM avertissement ORDER BY niveauAlerte_idNiveauAlerte DESC", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

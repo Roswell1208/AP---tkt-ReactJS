@@ -7,7 +7,7 @@ import Missions from '../Pages/Missions';
 import MissionsAdmin from '../Pages/MissionsAdmin';
 import ContrôleAnimaux from '../Pages/ContrôleAnimaux';
 import Avertissement from '../Pages/Avertissement';
-import CreationCompte from '../Pages/CreationCompte';
+// import CreationCompte from '../Pages/CreationCompte';
 import Logout from '../Pages/Logout';
 import '../assets/css/NavBar.css';
 import { Component } from 'react';
@@ -22,7 +22,7 @@ class NavBar extends Component{
   return (
     <BrowserRouter>
       <nav>
-      <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza-logo.png" alt='logo'/></a>
+      <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza.svg" alt='logo'/></a>
       <div>
         <ul id="navbar" className={this.state.clicked ? "#navbar active" : "#navbar"}>
           <li>
@@ -40,9 +40,9 @@ class NavBar extends Component{
           <li>
             <a href="/avertissement">Avertissement</a>
           </li>
-          <li>
+          {/* <li>
             <a href="/creationCompte">Création de Compte</a>
-          </li>
+          </li> */}
           <li>
             <a href="/logout">Déconnexion</a>
         </li>
@@ -64,7 +64,7 @@ class NavBar extends Component{
       <Route path="/missionsAdmin" element={<MissionsAdmin />} />
       <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
       <Route path="/avertissement" element={<Avertissement />} />
-      <Route path="/creationCompte" element={<CreationCompte />} />
+      {/* <Route path="/creationCompte" element={<CreationCompte />} /> */}
       <Route path="/logout" element={<Logout />} />
       </Routes>
       </BrowserRouter>
