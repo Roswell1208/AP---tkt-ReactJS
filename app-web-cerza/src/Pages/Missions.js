@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import '../assets/css/missionsAdmin.css';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 
-import { Button, FilledInput } from '@mui/material';
+import { Button } from '@mui/material';
 
 import TextField from '@mui/material/TextField';
 
@@ -20,6 +22,7 @@ const Missions = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
+        document.title = "Missions";
         const fetchData = async () => {
             const result = await axios.get(
                 'http://localhost:8080/api/missions/\'' + connectedUser + '\'',
@@ -35,13 +38,13 @@ const Missions = () => {
 
 
     const handleClick = (idMission, estEffectuee) => {
-        if (estEffectuee == 1) {
+        if (estEffectuee === 1) {
             axios.put(
                 'http://localhost:8080/api/missions/updateState/' + idMission + '/0',
             );
             window.location.reload();
         }
-        else if(estEffectuee == 0) {
+        else if(estEffectuee === 0) {
             axios.put(
                 'http://localhost:8080/api/missions/updateState/' + idMission + '/1',
             );
@@ -52,7 +55,7 @@ const Missions = () => {
     const updateComments = (idMission, comment, commentaireMission) => {
         alert(idMission + ' ' + comment + ' ' + commentaireMission)
 
-        if(comment != null && commentaireMission != comment) {
+        if(comment !== null && commentaireMission !== comment) {
             axios.put(
                 'http://localhost:8080/api/missions/updateComments/' + idMission + '/\'' + comment + '\'',
             );
@@ -72,7 +75,7 @@ const Missions = () => {
 
             <p>Connecté en tant que {connectedUser}</p>
 
-            <TableContainer component={Paper}>
+            <TableContainer>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -101,15 +104,15 @@ const Missions = () => {
                         </TableCell>
                         <TableCell align="center">{item.descriptionMission}</TableCell>
                         <TableCell align="center">{item.dateEcheanceMission}</TableCell>
-                        <TableCell align="center">{item.estEffectuee == 1 ? 
+                        <TableCell align="center">{item.estEffectuee === 1 ? 
                             <Button variant="contained" color="success" onClick={() => handleClick(item.idMission, item.estEffectuee)}>Effectuée</Button> 
                             : 
                             <Button variant="outlined" color="error" onClick={() => handleClick(item.idMission, item.estEffectuee)}>Non effectuée</Button>}
                             <p style={{fontSize: "10px", fontStyle: "italic", marginTop: "5px"}}>(Cliquez pour changer l'état)</p>
                         </TableCell>
                         <TableCell align="center">{item.prioriteMission_idPriorite} - {item.libellePriorite}</TableCell>
-                        <TableCell align="center">{item.animal_codeAnimal == null ? '/' : item.animal_codeAnimal + ' - ' + item.nomAnimal}</TableCell>
-                        <TableCell align="center">{item.enclos_codeEnclos == null ? '/' : item.enclos_codeEnclos}</TableCell>
+                        <TableCell align="center">{item.animal_codeAnimal === null ? '/' : item.animal_codeAnimal + ' - ' + item.nomAnimal}</TableCell>
+                        <TableCell align="center">{item.enclos_codeEnclos === null ? '/' : item.enclos_codeEnclos}</TableCell>
                         {/*<TableCell align="center">{item.commentaireMission == null ? '/' : item.commentaireMission}</TableCell>*/}
                         <TableCell align="center">
                         <TextField

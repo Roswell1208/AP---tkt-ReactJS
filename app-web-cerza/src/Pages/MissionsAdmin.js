@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import '../assets/css/missionsAdmin.css';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
-import { Button, FilledInput } from '@mui/material';
 
 import TextField from '@mui/material/TextField';
 
@@ -19,16 +18,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Calendar from 'moedim';
+
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+
+import Button from '@mui/material/Button';
 
 
 const Missions = () => {
 
+    const [value, setValue] = useState(new Date());
+
+    const [submit, setSubmit] = useState(false);
+    const [error, setError] = useState(false);
+
     const [data, setData] = useState([])
 
     useEffect(() => {
+        document.title = "Missions - Admin";
         const fetchData = async () => {
             const result = await axios.get(
                 'http://localhost:8080/api/missions/',
@@ -86,70 +94,90 @@ const Missions = () => {
 
 
     const [description, setDescription] = useState('');
-    // const [dateEcheance, setDateEcheance] = useState<Date | null>(null);
-    // const [selected, setSelected] = useState<Date>(null);
     const [userSelected, setUserSelected] = useState('Aucun');
     const [priorité, setPriorité] = useState('Aucun');
-    const [codeAnimal, setCodeAnimal] = useState('Aucun');
-    const [codeEnclos, setCodeEnclos] = useState('Aucun');
+    const [codeAnimal, setCodeAnimal] = useState(null);
+    const [codeEnclos, setCodeEnclos] = useState(null);
 
-    const handleClick = (description, userSelected, priorité, codeAnimal, codeEnclos) => {
-        if (description != '' && userSelected != 'Aucun' && priorité != 'Aucun'){
-            alert('Description de la mission : ' + description + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
+    const handleClick = (description, value, userSelected, priorité, codeAnimal, codeEnclos) => {
+        if (description !== '' && userSelected !== 'Aucun' && priorité !== 'Aucun'){
+            alert('Description de la mission : ' + description + ' / Calendar : ' + value + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
+            axios.post(
+                'http://localhost:8080/api/missions/', {
+                    "descriptionMission": description,
+                    "dateEcheanceMission": value,
+                    "commentaireMission": "",
+                    "estEffectuee": 0,
+                    "user_username": userSelected,
+                    "prioriteMission_idPriorite": priorité,
+                    "animal_codeAnimal": codeAnimal,
+                    "enclos_codeEnclos": codeEnclos
+                }
+            );
+            setError(false);
+            setSubmit(true);
+
+            setTimeout(reload, 3000);
         }
         else {
-            alert('Veuillez remplir tous les champs !');
+            setError(true);
         }
+    }
+
+    const reload = () => {
+        window.location.reload();
     }
 
     return (
         <div>
-            <h1>Liste des missions par état :</h1>
+            <div className='listMissionsAdmin'>
+                <h1>Liste des missions par état :</h1>
 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Id de la mission</TableCell>
-                            <TableCell align="center">Description de la mission</TableCell>
-                            <TableCell align="center">Date d'échéance</TableCell>
-                            <TableCell align="center">Mission effectuée ?</TableCell>
-                            <TableCell align='center'>Utilisateur associé</TableCell>
-                            <TableCell align="center">Niveau de priorité</TableCell>
-                            <TableCell align="center">Code de l'animal concerné</TableCell>
-                            <TableCell align="center">Code de l'enclos concerné</TableCell>
-                            <TableCell align="center">Commentaire de la mission</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {data.map((item) => (
-                        item.dateEcheanceMission = new Date(item.dateEcheanceMission).toDateString(),
+                <TableContainer>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Id de la mission</TableCell>
+                                <TableCell align="center">Description de la mission</TableCell>
+                                <TableCell align="center">Date d'échéance</TableCell>
+                                <TableCell align="center">Mission effectuée ?</TableCell>
+                                <TableCell align='center'>Utilisateur associé</TableCell>
+                                <TableCell align="center">Niveau de priorité</TableCell>
+                                <TableCell align="center">Code de l'animal concerné</TableCell>
+                                <TableCell align="center">Code de l'enclos concerné</TableCell>
+                                <TableCell align="center">Commentaire de la mission</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                        {data.map((item) => (
+                            item.dateEcheanceMission = new Date(item.dateEcheanceMission).toDateString(),
 
-                        <TableRow
-                        key={item.idMission}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                        <TableCell component="th" scope="item">
-                            {item.idMission}
-                        </TableCell>
-                        <TableCell align="center">{item.descriptionMission}</TableCell>
-                        <TableCell align="center">{item.dateEcheanceMission}</TableCell>
-                        <TableCell align="center">{item.estEffectuee == 1 ? <b style={{color: 'green'}}>Oui</b> : <b style={{color: 'red'}}>Non</b>}</TableCell>
-                        <TableCell align="center">{item.user_username}</TableCell>
-                        <TableCell align="center">{item.prioriteMission_idPriorite} - {item.libellePriorite}</TableCell>
-                        <TableCell align="center">{item.animal_codeAnimal == null ? '/' : item.animal_codeAnimal + ' - ' + item.nomAnimal}</TableCell>
-                        <TableCell align="center">{item.enclos_codeEnclos == null ? '/' : item.enclos_codeEnclos}</TableCell>
-                        <TableCell align="center">{item.commentaireMission == null || item.commentaireMission == "" ? '/' : item.commentaireMission}</TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                            <TableRow
+                            key={item.idMission}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                            <TableCell component="th" scope="item">
+                                {item.idMission}
+                            </TableCell>
+                            <TableCell align="center">{item.descriptionMission}</TableCell>
+                            <TableCell align="center">{item.dateEcheanceMission}</TableCell>
+                            <TableCell align="center">{item.estEffectuee === 1 ? <b style={{color: 'green'}}>Oui</b> : <b style={{color: 'red'}}>Non</b>}</TableCell>
+                            <TableCell align="center">{item.user_username}</TableCell>
+                            <TableCell align="center">{item.prioriteMission_idPriorite} - {item.libellePriorite}</TableCell>
+                            <TableCell align="center">{item.animal_codeAnimal === null ? '/' : item.animal_codeAnimal + ' - ' + item.nomAnimal}</TableCell>
+                            <TableCell align="center">{item.enclos_codeEnclos === null ? '/' : item.enclos_codeEnclos}</TableCell>
+                            <TableCell align="center">{item.commentaireMission === null || item.commentaireMission === "" ? '/' : item.commentaireMission}</TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
 
-            <div>
+            <div className='cardAddMission'>
                 <h1>Ajouter une mission :</h1>
 
-                <p>Text field avec description de la mission</p>
+                <p><span style={{color: 'red'}}>* </span>Entrez une description pour la mission :</p>
                 <TextField
                     id="filled-multiline-flexible"
                     label="Description de la mission"
@@ -160,10 +188,15 @@ const Missions = () => {
                     />
                     
                 <br></br>
-                <p>Calendrier avec date échéance de la mission</p>
+                <br></br>
+                <p><span style={{color: 'red'}}>* </span>Sélectionnez une date échéance pour la mission :</p>
+                <div className='calendar'>
+                    <Calendar value={value} onChange={(d) => setValue(d)} />
+                </div>
                 
                 <br></br>
-                <p>Selector avec liste des user</p>
+                <br></br>
+                <p><span style={{color: 'red'}}>* </span>Sélectionnez un utilisateur :</p>
                 <select onChange={(e) => (setUserSelected(e.target.value))}>
                     <option key={0} value={'Aucun'}>Aucun</option>
                     {users.map((item) => (
@@ -172,7 +205,8 @@ const Missions = () => {
                 </select>
 
                 <br></br>
-                <p>Radio button avec les priorités</p>
+                <br></br>
+                <p><span style={{color: 'red'}}>* </span>Sélectionnez un niveau de priorité :</p>
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Niveau de priorité</FormLabel>
                     <RadioGroup
@@ -187,24 +221,53 @@ const Missions = () => {
                 </FormControl>
                 
                 <br></br>
-                <p>Selector avec liste des codes animaux</p>
+                <br></br>
+                <p>Sélectionnez un animal :</p>
                 <select onChange={(e) => (setCodeAnimal(e.target.value))}>
-                    <option key={0} value={'Aucun'}>Aucun</option>
+                    <option key={0} value={null}>Aucun</option>
                     {animaux.map((item) => (
                         <option key={item.codeAnimal} value={item.codeAnimal}>{item.codeAnimal} - {item.nomAnimal}</option>
                     ))}
                 </select>
 
                 <br></br>
-                <p>Selector avec liste des codes d'enclos</p>
+                <br></br>
+                <p>Sélectionnez un enclos :</p>
                 <select onChange={(e) => (setCodeEnclos(e.target.value))}>
-                    <option key={0} value={'Aucun'}>Aucun</option>
+                    <option key={0} value={null}>Aucun</option>
                     {enclos.map((item) => (
                         <option key={item.codeEnclos} value={item.codeEnclos}>{item.codeEnclos}</option>
                     ))}
                 </select>
 
-                <button onClick={() => handleClick(description, userSelected, priorité, codeAnimal, codeEnclos)}>Submit</button>
+                <br></br>
+                <br></br>
+                {/* <button disabled={submit} onClick={() => handleClick(description, value, userSelected, priorité, codeAnimal, codeEnclos)}>Enregistrer</button> */}
+                <Button disabled={submit} onClick={() => handleClick(description, value, userSelected, priorité, codeAnimal, codeEnclos)} variant="contained">Enregistrer</Button>
+                
+                {submit &&
+                    <Alert severity="success" action={
+                        <IconButton
+                          aria-label="close"
+                          color="inherit"
+                          size="small">
+                        </IconButton>
+                      }>
+                      Mission créée, la page va s'actualiser !
+                    </Alert>
+                }
+
+                {error &&
+                    <Alert severity="error" action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small">
+                        </IconButton>
+                    }>
+                        Veuillez remplir tous les champs obligatoires !
+                    </Alert>
+                }
             </div>
 
         </div>
