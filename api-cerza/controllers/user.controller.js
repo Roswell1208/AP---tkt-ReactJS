@@ -127,3 +127,20 @@ exports.deleteAll = (req, res) => {
         else res.send({ message: `All Users were deleted successfully!` });
     });
 };
+
+//compare user input with database
+exports.auth = (req, res) => {
+    User.login(req.body.username, req.body.password, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found User with username ${req.body.username}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving User with username " + req.body.username
+                });
+            }
+        } else res.send(data);
+    });
+};

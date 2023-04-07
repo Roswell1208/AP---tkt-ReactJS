@@ -1,0 +1,59 @@
+.animal-page {
+    display: flex; /* Pour que les éléments soient alignés horizontalement */
+    justify-content: center; /* Pour que les éléments soient centrés horizontalement */
+    align-items: center; /* Pour que les éléments soient centrés verticalement */
+    height: 100vh; /* Pour que la page prenne toute la hauteur de l'écran */
+  }
+  
+  .animal-info {
+    text-align: center; /* Pour que le texte soit centré */
+  }
+  
+  .animal-info img {
+    width: 250px; /* Pour que l'image soit carrée */
+    height: 250px; /* Pour que l'image soit carrée */
+    border-radius: 50%; /* Pour que l'image soit arrondie */
+  }
+  
+  .animal-info h2 {
+    margin-top: 1rem;  /* Pour que le titre soit plus éloigné du texte */
+  }
+  
+  .animal-info p {
+    margin-top: 0.5rem;  /* Pour que le texte soit plus éloigné du titre */
+  }
+
+  table {
+    border-collapse: collapse; /* Pour que les bordures des cellules soient collées entre elles */
+    width: 100%; /* Pour que le tableau prenne toute la largeur de la page */
+    max-width: 800px; /* Pour que le tableau ne soit pas trop large sur mobile */
+    margin: 0 auto; /* Pour centrer le tableau sur la page */
+    font-size: 16px; /* Pour que le texte soit plus lisible */
+    color: #333; /* Pour que le texte soit plus lisible */
+    line-height: 1.4; /* Pour que le texte soit plus lisible */
+  } 
+  
+  th, td {
+    border: 1px solid #ccc; /* Pour que les cellules soient séparées */
+    padding: 8px; /* Pour que les cellules soient plus grandes */
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Pour que l'entête soit grise */
+    font-weight: bold; /* Pour que l'entête soit en gras */
+    text-align: left; /* Pour que l'entête soit alignée à gauche */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Pour qu'une ligne sur 2 soit grise */
+  }
+  
+  tr:hover {
+    background-color: #ddd; /* Pour que la ligne survolée soit grise */
+  }
+  
+  @media (max-width: 767px) { /* Pour mobile */
+    table {
+      font-size: 14px; /* Pour que le texte soit plus petit sur mobile */
+    }
+  }

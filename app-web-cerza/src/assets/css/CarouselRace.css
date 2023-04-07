@@ -1,0 +1,17 @@
+.c-item{
+    height: 480px; 
+}
+
+.c-img{
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6); 
+}
+
+h3{
+    text-decoration: underline rgb(193, 193, 177);
+}
+
+.c-item:hover{
+    opacity: 0.8;
+}
