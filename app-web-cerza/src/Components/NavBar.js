@@ -8,7 +8,6 @@ import MissionsAdmin from '../Pages/MissionsAdmin';
 import ContrôleAnimaux from '../Pages/ContrôleAnimaux';
 import Avertissement from '../Pages/Avertissement';
 // import CreationCompte from '../Pages/CreationCompte';
-import Logout from '../Pages/Logout';
 import '../assets/css/NavBar.css';
 import { Component } from 'react';
 
@@ -43,9 +42,6 @@ class NavBar extends Component{
           {/* <li>
             <a href="/creationCompte">Création de Compte</a>
           </li> */}
-          <li>
-            <a href="/logout">Déconnexion</a>
-        </li>
         </ul>
       </div>
       <div id="mobile" onClick={this.handleClick}>
@@ -65,7 +61,6 @@ class NavBar extends Component{
       <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
       <Route path="/avertissement" element={<Avertissement />} />
       {/* <Route path="/creationCompte" element={<CreationCompte />} /> */}
-      <Route path="/logout" element={<Logout />} />
       </Routes>
       </BrowserRouter>
   );
