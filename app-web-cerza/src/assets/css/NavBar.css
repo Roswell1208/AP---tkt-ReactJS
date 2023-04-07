@@ -2,7 +2,7 @@ nav {
     display:flex;
     align-items: center;
     justify-content: space-between;
-    background: #2a3239;
+    background: #FE9C3F;
     padding: 20px 80px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
 }
@@ -21,7 +21,7 @@ nav {
 
 #navbar li a{
     text-decoration: none;
-    color: #fff;
+    color: #2a3239;
     font-size: 1.3rem;
     font-weight: 600;
     transition:0.3s ease-in-out;
@@ -29,7 +29,7 @@ nav {
 
 #navbar li a:hover,
 #navbar li a.active{
-    color: #FE9C3F;
+    color: #fff;
 }
 
 #navbar li a:hover::after , 
@@ -48,7 +48,7 @@ nav {
 }
 
 #mobile i{
-    color: #fff;
+    color: #2a3239;
     align-items: center;
 }
 
@@ -63,7 +63,7 @@ nav {
         right: -300px;
         width: 300px;
         height: 100vh;
-        background: #2a3239;
+        background: #FE9C3F;
         box-shadow: 0 40px 60px rgba(0,0,0,0.1);
         padding: 40px 0 0 10px;
         transition: 0.3s ease-in-out;
