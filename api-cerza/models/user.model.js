@@ -55,6 +55,19 @@ User.getAll = result => {
     });
 };
 
+User.getList = result => {
+    sql.query("SELECT username, lastname, firstname FROM user", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        
+        console.log("users: ", res);
+        result(null, res);
+    });
+};
+
 User.updateById = (id, user, result) => {
     sql.query("UPDATE user SET username = ?, email = ?, password = ?, lastname = ?, firstname = ?, roles_idRole = ? WHERE username = ?", [user.username, user.email, user.password, user.lastname, user.firstname, user.roles_idRole, id], (err, res) => {
         if (err) {
@@ -103,6 +116,26 @@ User.removeAll = result => {
         
         console.log(`deleted ${res.affectedRows} users`);
         result(null, res);
+    });
+};
+
+//compare user input with database
+User.login = (username, password, result) => {
+    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole FROM user WHERE username = '${username}' AND password = '${password}'`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        
+        if (res.length) {
+            console.log("found user: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+
+        // not found User with the id
+        result({ kind: "not_found" }, null);
     });
 };
 

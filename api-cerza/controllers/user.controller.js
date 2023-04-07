@@ -42,6 +42,18 @@ exports.findAll = (req, res) => {
     });
 };
 
+// Retrieve all Users from the database.
+exports.listUsers = (req, res) => {
+    User.getList((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
 // Find a single User with an id
 exports.findOne = (req, res) => {
     User.findById(req.params.id, (err, data) => {
@@ -113,5 +125,22 @@ exports.deleteAll = (req, res) => {
                     err.message || "Some error occurred while removing all users."
             });
         else res.send({ message: `All Users were deleted successfully!` });
+    });
+};
+
+//compare user input with database
+exports.auth = (req, res) => {
+    User.login(req.body.username, req.body.password, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found User with username ${req.body.username}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving User with username " + req.body.username
+                });
+            }
+        } else res.send(data);
     });
 };
