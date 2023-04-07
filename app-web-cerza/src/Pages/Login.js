@@ -14,6 +14,7 @@ const Login = () => {
 
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
+    const [roles, setRoles] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -40,19 +41,20 @@ const Login = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            const roles = response?.data?.roles_idRole;
-            setAuth({ user, pwd, roles});
+            const role = response?.data?.roles_idRole;
+            setAuth({ user, pwd, roles: role});
             setUser('');
             setPwd('');
             setSuccess(true);
 
-            if (roles ===1){
-                console.log("admin");
+            if(role === 1){
                 setIsAdmin(true);
-            } else{
-                console.log("user");
+                setRoles('Admin');
+            } else {
                 setIsAdmin(false);
+                setRoles('User');
             }
+
         } catch(err) {
             if(!err?.response){
                 setErrMsg('No server Response');
@@ -71,24 +73,24 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>You are logged in!</h1>
+                    <h1>You are logged in {roles}!</h1>
                     <br />
                     <p>
                         <a href="/encyclopédie">Go to Home</a>
                     </p>
                 </section>
             ) : (
-                <body>
+                <body className='bodylogin'>
                     <link rel="stylesheet" href="../assets/css/login.css"></link>
                     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"></link>
                     <title>Login</title>
-                    <div class="login__card">
-                        <div class="login__intro">
-                            <img src="login.svg" alt="" class="login__image"></img>
+                    <div className='login__card'>
+                        <div className='login__intro'>
+                            <img src="login.svg" alt="" className='login__image'></img>
                             <h2>Bienvenue !</h2>
                             <h4>Enter vos informations pour continuer</h4>
                         </div>
-                        <div class="login__form">
+                        <div className='login__form'>
                             <section>
                                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                                 <h1>Sign In</h1>
@@ -96,7 +98,7 @@ const Login = () => {
                                     <label htmlFor="username">Username:</label>
                                     <input type="text"
                                         id="username"
-                                        class="input username"
+                                        className='input username'
                                         placeholder="Enter your username"
                                         ref={userRef}
                                         autoComplete='off'
@@ -108,18 +110,18 @@ const Login = () => {
                                     <label htmlFor="password">password:</label>
                                     <input type="password"
                                         id="password"
-                                        class="input password"
+                                        className='input password'
                                         placeholder="Enter your password"
                                         ref={userRef}
                                         onChange={(e) => setPwd(e.target.value)}
                                         value={pwd}
                                         required
                                     />
-                                    <button type="submit" class="input submit" value="Sign Me In">Sign In</button>
+                                    <button type="submit" className='input submit' value="Sign Me In">Sign In</button>
                                 </form>
                             </section>
-                            <div class="login__helper">
-                                <span class="forget__password">
+                            <div className='login__helper'>
+                                <span className='forget__password'>
                                     Forget Your Password? <a href="#">Reset Now</a>
                                 </span>
                             </div>
@@ -127,23 +129,6 @@ const Login = () => {
                     </div>
                 </body>
             )}
-            {isAdmin ? (
-                <section>
-                    <h1>You are logged in as admin!</h1>
-                    <br />
-                    <p>
-                        <a href="/missions">Go to Admin</a>
-                    </p>
-                </section>
-            ) : (
-                <section>
-                    <h1>You are logged in as user!</h1>
-                    <br />
-                    <p>
-                        <a href="/encyclopédie">Go to Home</a>
-                        </p>
-                        </section>
-                        )}
             </>
     );
 };
