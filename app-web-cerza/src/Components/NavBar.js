@@ -1,13 +1,3 @@
-import Accueil from '../Pages/Accueil';
-import EncyclopédieRace from '../Pages/EncyclopédieRace';
-import EncyclopédieAnimal from '../Pages/EncyclopédieAnimal';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import Login from '../Pages/Login';
-import Missions from '../Pages/Missions';
-import MissionsAdmin from '../Pages/MissionsAdmin';
-import ContrôleAnimaux from '../Pages/ContrôleAnimaux';
-import Avertissement from '../Pages/Avertissement';
-// import CreationCompte from '../Pages/CreationCompte';
 import '../assets/css/NavBar.css';
 import { Component } from 'react';
 
@@ -19,7 +9,6 @@ class NavBar extends Component{
   };
   render(){
   return (
-    <BrowserRouter>
       <nav>
       <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza.svg" alt='logo'/></a>
       <div>
@@ -50,19 +39,6 @@ class NavBar extends Component{
         </i>
       </div>
       </nav>
-
-      <Routes>
-      <Route path="/" element={<Accueil />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/encyclopédieRace" element={<EncyclopédieRace />} />
-      <Route path="/encyclopédieAnimal" element={<EncyclopédieAnimal />} />
-      <Route path="/missions" element={<Missions />} />
-      <Route path="/missionsAdmin" element={<MissionsAdmin />} />
-      <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
-      <Route path="/avertissement" element={<Avertissement />} />
-      {/* <Route path="/creationCompte" element={<CreationCompte />} /> */}
-      </Routes>
-      </BrowserRouter>
   );
   }
 }

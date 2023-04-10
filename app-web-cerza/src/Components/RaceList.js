@@ -29,7 +29,7 @@ const RaceList = () => {
   };
 
   return (
-    <div>
+    <div className="fond">
       <div className="search-bar">
         <form>
           <input
