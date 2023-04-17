@@ -54,6 +54,10 @@ const Login = () => {
                 setRoles('User');
             }
 
+            localStorage.setItem('user', JSON.stringify({ user, role}));
+
+            window.location.href = '/';
+
         } catch(err) {
             if(!err?.response){
                 setErrMsg('No server Response');
