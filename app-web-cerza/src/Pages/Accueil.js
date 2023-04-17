@@ -1,5 +1,6 @@
 import React,  {useEffect} from 'react';
 import CarouselRace from '../Components/CarouselRace';
+import TableauAvert from '../Components/TableauAvert';
 
 const Accueil = () => {
   useEffect(() => {
@@ -9,6 +10,7 @@ const Accueil = () => {
   return (
     <div>
       <CarouselRace/>
+      <TableauAvert/>
     </div>
   );
 };

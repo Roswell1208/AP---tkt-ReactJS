@@ -38,8 +38,8 @@ Animal.findById = (animalId, result) => {
         }
         
         if (res.length) {
-            console.log("found animal: ", res[0]);
-            result(null, res[0]);
+            console.log("found animal: ", res[0]); 
+            result(null, res[0]); // retourne qu'un seul resultat car codeAnimal est unique
             return;
         }
         
@@ -57,8 +57,8 @@ Animal.findByRace = (raceId, result) => {
         }
 
         if (res.length) {
-            console.log("found animal: ", res[0]);
-            result(null, res[0]);
+            console.log("found animal: ");
+            result(null, res); // peut retourner plusieurs resultats car plusieurs animaux par race
             return;
         }
 
@@ -83,8 +83,8 @@ Animal.getAll = result => {
 };
 
 Animal.updateById = (id, animal, result) => {
-    sql.query("UPDATE animal SET poids = ?, etatSante_idEtatSante = ?, commentaireEtatSante = ? WHERE codeAnimal = ?", 
-    [animal.poids, animal.idEtatSante, animal.commentaireEtatSante, id], (err, res) => {
+    sql.query("UPDATE animal SET etatSante_idEtatSante = ?, commentaireEtatSante = ? WHERE codeAnimal = ?", 
+    [animal.etatSante_idEtatSante, animal.commentaireEtatSante, id], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

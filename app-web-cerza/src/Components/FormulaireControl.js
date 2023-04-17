@@ -11,6 +11,7 @@ const FormulaireControl = () => {
     const [libelleEtatSante, setLibelleEtatSante] = useState([]);
 
     const [selectedRace, setSelectedRace] = useState("");
+    //const [changerRace, setChangerRace] = useState(false);
 
     // Pour l'update de l'animal
     //const [poids, setPoids] = useState("");
@@ -34,16 +35,18 @@ const FormulaireControl = () => {
 
     // Pour retourner la liste des Animaux
     useEffect(() => {
-        const fetchData = async () => {
-          if(selectedRace !== ""){
-            const result = await axios(`http://localhost:8080/api/animals/race/${selectedRace}`);
-            setNomAnimal(result.data);
-          }
-        };
-        fetchData();
+         const fetchData = async () => {
+           if(selectedRace !== ""){
+             const result = await axios(`http://localhost:8080/api/animals/race/${selectedRace}`);
+             setNomAnimal(result.data);
+             //setChangerRace(true);
+           }
+         };
+    
+          fetchData();
       }, [selectedRace]);
-
-
+    
+        
     // Pour retourner la liste des Etats de Santé
     useEffect(() => {
         const fetchData = async () => {
@@ -63,9 +66,8 @@ const FormulaireControl = () => {
         }
     
         try {
-          const response = await axios.put(`http://localhost:8080/api/animals/${Animal.codeAnimal}`, {
-            //const response = await axios.put(`http://localhost:8080/api/animals/"GIF1"`, {
-            //poids,
+          const response = await axios.put(`http://localhost:8080/api/animals/"TIG1"`, {
+            //poids, ${Animal.key}
             etatSante_idEtatSante,
             commentaireEtatSante,
           });
