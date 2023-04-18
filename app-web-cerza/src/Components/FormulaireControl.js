@@ -17,6 +17,7 @@ const FormulaireControl = () => {
     //const [poids, setPoids] = useState("");
     const [etatSante_idEtatSante, setIdEtatSante] = useState("");
     const [commentaireEtatSante, setCommentaireEtatSante] = useState("");
+    const [codeAnimal, setCodeAnimal] = useState(""); // Pour stocker la valeur de codeAnimal [codeAnimal, setCodeAnimal
 
     const [isSubmitted, setIsSubmitted] = useState(false); // Vérifie s'il y a une insertion dans la base de données 
     const [griser, setGriser] = useState(false); // Pour vérifier si le bouton est grisé
@@ -66,7 +67,7 @@ const FormulaireControl = () => {
         }
     
         try {
-          const response = await axios.put(`http://localhost:8080/api/animals/"TIG1"`, {
+          const response = await axios.put(`http://localhost:8080/api/animals/${codeAnimal}`, {
             //poids, ${Animal.key}
             etatSante_idEtatSante,
             commentaireEtatSante,
@@ -79,6 +80,13 @@ const FormulaireControl = () => {
           console.log(error);
         }
       };
+
+      const handleChange = (e) => {
+        setCodeAnimal = e.target.value;
+        console.log(codeAnimal);
+      }
+
+
 
     return (
         <form onSubmit={handleSubmit} className="FormAvert">
@@ -99,7 +107,7 @@ const FormulaireControl = () => {
                 {selectedRace !== "" ? (
                     <label className="NiveauAlert">
                     Veuillez sélectionner l'animal associé
-                    <select> 
+                    <select onChange={(e) => setCodeAnimal(e.target.value)}> 
                         <option key={0} value="">-- Sélection d'une animal --</option> 
                             {Animal.map((item) => (
                         <option key={item.codeAnimal} value={item.codeAnimal}>
