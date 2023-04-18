@@ -29,7 +29,7 @@ const RaceList = () => {
   };
 
   return (
-    <div>
+    <div className="fond">
       <div className="search-bar">
         <form>
           <input
@@ -45,6 +45,7 @@ const RaceList = () => {
           <div key={item.idRace} className="card">
             <div className="imgBx">
               <img src={item.imgRace} alt="img" />
+              <a href={`encyclopédieAnimal?idRace=${item.idRace}`}/> 
             </div>
             <div className="content">
               <h2>{item.libelleRace}</h2>

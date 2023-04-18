@@ -8,6 +8,19 @@
   padding: 100px 50px; /* permet de créer un espace entre les éléments enfants et le bord de la page */
 }
 
+.fond{
+  background-image: url("https://www.dhnet.be/resizer/HRyPTSwyL14amoBd86pycSYK0-s=/1200x800/filters:format(jpeg):focal(1275x755:1285x745)/cloudfront-eu-central-1.images.arcpublishing.com/ipmgroup/KZJ24EWGNJDWRHQ6BY7KHG5XZQ.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: auto ;
+  width: 100%;
+  position: absolute;
+  top: 10;
+  left: 0;
+}
+
 .container .card{
   position:relative; /* permet de positionner les éléments enfants par rapport à lui-même */
   display: flex;  /* permet de positionner les éléments enfants horizontalement */

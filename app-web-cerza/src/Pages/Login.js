@@ -2,7 +2,6 @@ import React from 'react';
 import { useRef, useState, useEffect, useContext } from 'react';
 import  { AuthContext }  from '../Context/AuthProvider';
 import '../assets/css/login.css';
-import '../assets/css/login.svg';
 
 import axios from '../api/axios';
 const LOGIN_URL = "/login";
@@ -55,6 +54,10 @@ const Login = () => {
                 setRoles('User');
             }
 
+            localStorage.setItem('user', JSON.stringify({ user, role}));
+
+            window.location.href = '/';
+
         } catch(err) {
             if(!err?.response){
                 setErrMsg('No server Response');
@@ -86,7 +89,7 @@ const Login = () => {
                     <title>Login</title>
                     <div className='login__card'>
                         <div className='login__intro'>
-                            <img src="login.svg" alt="" className='login__image'></img>
+                            <img src="assets/img/login.svg" alt="" className='login__image'></img>
                             <h2>Bienvenue !</h2>
                             <h4>Enter vos informations pour continuer</h4>
                         </div>

@@ -3,8 +3,8 @@ import EncyclopédieRace from '../Pages/EncyclopédieRace';
 import EncyclopédieAnimal from '../Pages/EncyclopédieAnimal';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from '../Pages/Login';
+import Logout from '../Pages/Logout';
 import Missions from '../Pages/Missions';
-import MissionsAdmin from '../Pages/MissionsAdmin';
 import ContrôleAnimaux from '../Pages/ContrôleAnimaux';
 import Avertissement from '../Pages/Avertissement';
 // import CreationCompte from '../Pages/CreationCompte';
@@ -19,7 +19,6 @@ class NavBar extends Component{
   };
   render(){
   return (
-    <BrowserRouter>
       <nav>
       <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza.svg" alt='logo'/></a>
       <div>
@@ -42,6 +41,15 @@ class NavBar extends Component{
           {/* <li>
             <a href="/creationCompte">Création de Compte</a>
           </li> */}
+          
+          {localStorage.getItem('user') ? 
+          <li>
+            <a href="/logout">Logout</a>
+          </li> :
+          <li>
+            <a href="/login">Login</a>
+          </li>
+          }
         </ul>
       </div>
       <div id="mobile" onClick={this.handleClick}>
@@ -54,10 +62,10 @@ class NavBar extends Component{
       <Routes>
       <Route path="/" element={<Accueil />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/logout" element={<Logout />} />
       <Route path="/encyclopédieRace" element={<EncyclopédieRace />} />
       <Route path="/encyclopédieAnimal" element={<EncyclopédieAnimal />} />
       <Route path="/missions" element={<Missions />} />
-      <Route path="/missionsAdmin" element={<MissionsAdmin />} />
       <Route path ="/contrôleAnimaux" element={<ContrôleAnimaux />} />
       <Route path="/avertissement" element={<Avertissement />} />
       {/* <Route path="/creationCompte" element={<CreationCompte />} /> */}

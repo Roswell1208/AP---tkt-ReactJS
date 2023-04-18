@@ -55,6 +55,7 @@ User.getAll = result => {
     });
 };
 
+
 User.getList = result => {
     sql.query("SELECT username, lastname, firstname FROM user", (err, res) => {
         if (err) {
