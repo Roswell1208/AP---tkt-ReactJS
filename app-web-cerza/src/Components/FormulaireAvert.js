@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 
 const FormulaireAvert = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false); // Vérifie s'il y a une insertio 
+  const [isSubmitted, setIsSubmitted] = useState(false); // Vérifie s'il y a une insertion dans la base de données 
   const [niveauAlerte, setNiveauAlerte] = useState([]); // Pour le libelle de nos alerte
   const [descriptionAvertissement, setDescriptionAvertissement] = useState(""); // Pour la description de notre alerte
   const [niveauAlerte_idNiveauAlerte, setIdNiveauAlerte] = useState(""); // Pour récupérer l'id de notre alerte

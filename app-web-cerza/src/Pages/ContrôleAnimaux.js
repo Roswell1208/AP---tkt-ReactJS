@@ -1,4 +1,5 @@
 import React,  {useEffect} from 'react';
+import FormulaireControl from '../Components/FormulaireControl';
 
 const ContrôleAnimaux = () => {
     useEffect(() => {
@@ -7,7 +8,7 @@ const ContrôleAnimaux = () => {
 
     return (
         <div>
-            
+            <FormulaireControl/>
         </div>
     );
 };

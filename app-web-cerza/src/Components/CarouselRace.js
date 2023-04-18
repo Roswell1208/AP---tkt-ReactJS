@@ -37,12 +37,12 @@ const CarouselRace = () => {
           src={item.imgRace}
           alt="slide"
         />
-        <Carousel.Caption>
+        {/* <Carousel.Caption>
           <div className='container'>
           <h3>{item.libelleRace}</h3>
           <p>{item.descriptionRace}</p>
           </div>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
         </div>
       </Carousel.Item>
       ))}
