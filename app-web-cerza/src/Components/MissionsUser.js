@@ -54,18 +54,16 @@ const Missions = () => {
     }
 
     const updateComments = (idMission, comment, commentaireMission) => {
-        alert(idMission + ' ' + comment + ' ' + commentaireMission)
+        //alert(idMission + ' ' + comment + ' ' + commentaireMission)
 
         if(comment !== null && commentaireMission !== comment) {
             axios.put(
                 'http://localhost:8080/api/missions/updateComments/' + idMission + '/\'' + comment + '\'',
             );
-
-            alert('Commentaire mis à jour !');
         }
 
         else {
-            alert('Commentaire non mis à jour !');
+            console.log('Commentaire non mis à jour !');
         }
     }
 

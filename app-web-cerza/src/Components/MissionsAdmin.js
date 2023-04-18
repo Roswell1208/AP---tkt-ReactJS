@@ -101,7 +101,7 @@ const Missions = () => {
 
     const handleClick = (description, value, userSelected, priorité, codeAnimal, codeEnclos) => {
         if (description !== '' && userSelected !== 'Aucun' && priorité !== 'Aucun'){
-            alert('Description de la mission : ' + description + ' / Calendar : ' + value + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
+            // alert('Description de la mission : ' + description + ' / Calendar : ' + value + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
             axios.post(
                 'http://localhost:8080/api/missions/', {
                     "descriptionMission": description,
