@@ -19,6 +19,7 @@ class NavBar extends Component{
   };
   render(){
   return (
+    <BrowserRouter>
       <nav>
       <a href="/" className='logo'> <img id="logo" src="assets/img/Cerza.svg" alt='logo'/></a>
       <div>
