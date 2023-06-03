@@ -1,14 +1,14 @@
-import React,  {useEffect} from 'react';
-import FormulaireAvert from '../Components/FormulaireAvert';
+import React from 'react';
+import AvertUser from '../Components/AvertUser';
+import AvertAdmin from '../Components/AvertAdmin';
 
 const Avertissement = () => {
-    useEffect(() => {
-        document.title = 'Avertissement';
-    }, []);
+
+    var user = localStorage.getItem('user');
 
     return (
         <div>
-            <FormulaireAvert />
+            {user === null ? (window.location.href = '/login') : (JSON.parse(user)?.role === 1 ? <AvertAdmin /> : <AvertUser />)}
         </div>
     );
 };

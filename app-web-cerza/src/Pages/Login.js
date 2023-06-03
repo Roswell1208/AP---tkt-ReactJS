@@ -23,6 +23,10 @@ const Login = () => {
     }, []);
 
     useEffect(() => {
+        document.title = 'Connexion';
+    }, []);
+
+    useEffect(() => {
         setErrMsg('');
     }, [user, pwd]);
 

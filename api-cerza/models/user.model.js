@@ -8,6 +8,7 @@ const User = function(user) {
     this.lastname = user.lastname;
     this.firstname = user.firstname;
     this.roles_idRole = user.roles_idRole;
+    this.poste = user.poste;
 }
 
 User.create = (newUser, result) => {
@@ -24,7 +25,7 @@ User.create = (newUser, result) => {
 };
 
 User.findById = (userId, result) => {
-    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole FROM user WHERE username = ${userId}`, (err, res) => {
+    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole, poste FROM user WHERE username = ${userId}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -43,7 +44,7 @@ User.findById = (userId, result) => {
 };
 
 User.getAll = result => {
-    sql.query("SELECT username, email, password, lastname, firstname, roles_idRole FROM user", (err, res) => {
+    sql.query("SELECT username, email, password, lastname, firstname, roles_idRole, poste FROM user", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -70,7 +71,7 @@ User.getList = result => {
 };
 
 User.updateById = (id, user, result) => {
-    sql.query("UPDATE user SET username = ?, email = ?, password = ?, lastname = ?, firstname = ?, roles_idRole = ? WHERE username = ?", [user.username, user.email, user.password, user.lastname, user.firstname, user.roles_idRole, id], (err, res) => {
+    sql.query("UPDATE user SET username = ?, email = ?, password = ?, lastname = ?, firstname = ?, roles_idRole = ?, poste = ? WHERE username = ?", [user.username, user.email, user.password, user.lastname, user.firstname, user.roles_idRole, id], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -122,7 +123,7 @@ User.removeAll = result => {
 
 //compare user input with database
 User.login = (username, password, result) => {
-    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole FROM user WHERE username = '${username}' AND password = '${password}'`, (err, res) => {
+    sql.query(`SELECT username, email, password, lastname, firstname, roles_idRole, poste FROM user WHERE username = '${username}' AND password = '${password}'`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

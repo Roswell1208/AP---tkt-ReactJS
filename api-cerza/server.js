@@ -30,6 +30,7 @@ require("./routes/race.routes.js")(app);
 require("./routes/avertissement.routes.js")(app);
 require("./routes/niveauAlerte.routes.js")(app);
 require("./routes/etatSante.routes.js")(app);
+require("./routes/roles.routes.js")(app);
 
 // set port, listen for requests
 const PORT = 8080;
