@@ -4,6 +4,14 @@
     align-items: center; /* Pour que les éléments soient centrés verticalement */
     height: 30vh; /*Pour que la page prenne toute la hauteur de l'écran */
   }
+
+  .animal-pages {
+    display: flex; /* Pour que les éléments soient alignés horizontalement */
+    justify-content: center; /* Pour que les éléments soient centrés horizontalement */
+    align-items: center; /* Pour que les éléments soient centrés verticalement */
+    height: 100vh; /*Pour que la page prenne toute la hauteur de l'écran */
+  }
+  
   
   .animal-info {
     text-align: center; /* Pour que le texte soit centré */

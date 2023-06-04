@@ -32,4 +32,63 @@ function App() {
     )
 }
 
+
+// // Exemple de garde de route pour les utilisateurs administrateurs
+// const AdminGuard = ({ element: Component, ...rest }) => {
+//   const isAdmin = true; // Remplacez par votre logique de vérification du rôle de l'utilisateur
+
+//   return (
+//     <Route
+//       {...rest}
+//       element={isAdmin ? <Component /> : <Navigate to="/login" replace />}
+//     />
+//   );
+// };
+
+// // Exemple de garde de route pour les utilisateurs normaux
+// const UserGuard = ({ element: Component, ...rest }) => {
+//   const isAdmin = false; // Remplacez par votre logique de vérification du rôle de l'utilisateur
+
+//   return (
+//     <Route
+//       {...rest}
+//       element={isAdmin ? <Navigate to="/login" replace /> : <Component />}
+//     />
+//   );
+// };
+
+// function App() {
+//     const isAdmin = true;
+//   return (
+//     <>
+//       <BrowserRouter>
+//         <NavBar isAdmin={isAdmin} />
+//         <Routes>
+//           <Route path="/" element={<Accueil />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/logout" element={<Logout />} />
+//           <Route element={<UserRoutes />} />
+//         </Routes>
+//       </BrowserRouter>
+//     </>
+//   );
+// }
+
+// // Composant pour les routes accessibles par les utilisateurs normaux
+// function UserRoutes() {
+//   return (
+//     <BrowserRouter>
+//         <Routes>
+//         <Route path="/encyclopédieRace" element={<EncyclopédieRace />} />
+//         <Route path="/encyclopédieAnimal" element={<EncyclopédieAnimal />} />
+//         <Route path="/missions" element={<Missions />} />
+//         <Route path="/avertissement" element={<Avertissement />} />
+//         <Route path="/creationCompte" element={<CreationCompte />} />
+//         <AdminGuard path="/contrôleAnimaux" element={<ContrôleAnimaux />} />
+//         </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+
 export default App;

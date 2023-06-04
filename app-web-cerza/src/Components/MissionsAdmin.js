@@ -28,7 +28,8 @@ import Button from '@mui/material/Button';
 
 const Missions = () => {
 
-    const [value, setValue] = useState(new Date());
+    // const [value, setValue] = useState(new Date());
+    const [date, setDate] = useState(new Date());
 
     const [submit, setSubmit] = useState(false);
     const [error, setError] = useState(false);
@@ -99,13 +100,13 @@ const Missions = () => {
     const [codeAnimal, setCodeAnimal] = useState(null);
     const [codeEnclos, setCodeEnclos] = useState(null);
 
-    const handleClick = (description, value, userSelected, priorité, codeAnimal, codeEnclos) => {
+    const handleClick = (description, date, userSelected, priorité, codeAnimal, codeEnclos) => {
         if (description !== '' && userSelected !== 'Aucun' && priorité !== 'Aucun'){
             // alert('Description de la mission : ' + description + ' / Calendar : ' + value + ' / User selected : ' + userSelected + ' / Niveau de priorité : ' + priorité + ' / Code animal : ' + codeAnimal + ' / Code enclos : ' + codeEnclos);
             axios.post(
                 'http://localhost:8080/api/missions/', {
                     "descriptionMission": description,
-                    "dateEcheanceMission": value,
+                    "dateEcheanceMission": date,
                     "commentaireMission": "",
                     "estEffectuee": 0,
                     "user_username": userSelected,
@@ -122,7 +123,29 @@ const Missions = () => {
         else {
             setError(true);
         }
-    }
+    };
+
+
+    // const handleClick = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await axios.post("http://localhost:8080/api/missions", {
+    //             descriptionMission: description,
+    //             dateEcheanceMission: value,
+    //             commentaireMission: "",
+    //             estEffectuee: 0,
+    //             user_username: userSelected,
+    //             prioriteMission_idPriorite: priorité,
+    //             animal_codeAnimal: codeAnimal,
+    //             enclos_codeEnclos: codeEnclos
+    //         });
+    //         console.log(response.data);
+    //         // setTimeout(reload, 1);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+    
 
     const reload = () => {
         window.location.reload();
@@ -177,6 +200,8 @@ const Missions = () => {
             <div className='cardAddMission'>
                 <h1>Ajouter une mission :</h1>
 
+                {/* <form onSubmit={handleClick}> */}
+
                 <p><span style={{color: 'red'}}>* </span>Entrez une description pour la mission :</p>
                 <TextField
                     id="filled-multiline-flexible"
@@ -191,7 +216,7 @@ const Missions = () => {
                 <br></br>
                 <p><span style={{color: 'red'}}>* </span>Sélectionnez une date échéance pour la mission :</p>
                 <div className='calendar'>
-                    <Calendar value={value} onChange={(d) => setValue(d)} />
+                    <Calendar value={date} onChange={(d) => setDate(d)} />
                 </div>
                 
                 <br></br>
@@ -243,8 +268,11 @@ const Missions = () => {
                 <br></br>
                 <br></br>
                 {/* <button disabled={submit} onClick={() => handleClick(description, value, userSelected, priorité, codeAnimal, codeEnclos)}>Enregistrer</button> */}
-                <Button disabled={submit} onClick={() => handleClick(description, value, userSelected, priorité, codeAnimal, codeEnclos)} variant="contained">Enregistrer</Button>
+                <Button disabled={submit} onClick={() => handleClick(description, date, userSelected, priorité, codeAnimal, codeEnclos)} variant="contained">Enregistrer</Button>
+                {/* <Button disbled={submit} onClick={handleClick} variant="contained">Enregistrer</Button> */}
                 
+                {/* </form> */}
+
                 {submit &&
                     <Alert severity="success" action={
                         <IconButton

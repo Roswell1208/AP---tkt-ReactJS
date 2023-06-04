@@ -32,7 +32,7 @@ const RaceDetails = () => {
   }
 
   return (
-    <div className='animal-page'>
+    <div className='animal-pages'>
       <div className='animal-info'>
         <img src={data.imgRace} alt='race'/>
         <h2>{data.libelleRace}</h2>
